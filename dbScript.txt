@@ -1,0 +1,9 @@
+create database Notes;
+
+use Notes;
+
+create table Notes(Title varchar(255),Detail TEXT,Created DATE,LastModified DATE);
+
+insert into Notes(Title,Detail,Created,LastModified) values ('Interview','Interview at Zappos 12 pm Sunday',CURRENT_DATE(),CURRENT_DATE());
+
+insert into Notes(Title,Detail,Created,LastModified) values ('Reminder','Mideterm project submission 25th March System Integration','2020-03-02',CURRENT_DATE());
