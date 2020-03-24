@@ -18,7 +18,7 @@ const options ={
       "url": "https://github.com/pushpdeep-gangrade",
       "email": "pgangrad@uncc.edu"
     },
-    "servers" : ["http://localhost:8080/"]
+    "servers" : ["http://167.172.244.188:8080/"]
   }
 },
     apis: ["api.js"]
@@ -27,7 +27,7 @@ const options ={
 const swaggerSpec = swaggerJSDoc(options);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-app.get('/',(req, res) => res.send('http://www.localhost:8080/notes/'));
+app.get('/',(req, res) => res.send('http://167.172.244.188/notes/'));
 
 app.get('/notes', (req, res) => res.send('{}'));
 

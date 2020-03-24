@@ -8,8 +8,8 @@ app.use(cors());
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "123456789",
-  database: "notes"
+  password: "root",
+  database: "Notes"
 });
 
 const port = 8080
@@ -32,17 +32,14 @@ app.get('/notes', function(req,res) {
 });
 
 app.get('/notes/:Title', function(req,res) {
-  console.log("get specific");
   con.query("SELECT * FROM Notes where Title='" +req.params.Title +"'", function (err, result, fields) {
     if (err) throw err;
-      console.log(result[0].Title);
     res.render("index.ejs",{result:result,
     editresult:result});
   });
 });
 
 app.post('/notes', function(req,res) {
- console.log("post");
   const sql = "Insert into Notes(Title,Detail,Created,LastModified) values ('"
               + req.body.note_title + "','"
               + req.body.note_detail + "',"
@@ -59,28 +56,22 @@ app.post('/notes', function(req,res) {
 
 
 app.put('/notes/:title', function(req,res) {
-  console.log("putMethod");
-  console.log(req.params.title);
-  console.log(req);
-  const sql = "Update notes set title='"
+  const sql = "Update Notes set title='"
   + req.body.note_title + "',Detail='"
   + req.body.note_detail + "',Created=CURRENT_DATE()"
   +  ",LastModified=CURRENT_DATE() where Title='"+ req.params.title + "';";
-  console.log(sql);
   con.query(sql, function (err, result, fields) {
     if (err) throw err;
-    console.log(result);
     res.send(result);
 
   });
 });
 
 app.patch('/notes/:title', async function(req,res) {
-  const sql = "Update notes set title='"
+  const sql = "Update Notes set title='"
   + req.body.note_title + "',Detail='"
   + req.body.note_detail + "',LastModified="
   + "CURRENT_DATE() where title='" +req.params.title + "';";
-  console.log(sql);
 
  con.query(sql, function (err, result, fields) {
       if (err) throw err;
@@ -96,5 +87,4 @@ res.send("Deleted Successfully");
 });
 
 app.listen(port, (req, res) => {
-  console.log("listening...");
 });

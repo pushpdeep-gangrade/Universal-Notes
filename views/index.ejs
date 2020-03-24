@@ -16,14 +16,14 @@
 
     async function onUpdate(title,method){
       if(method == "PATCH"){
-        await axios.patch('http://www.localhost:8080/notes/'+title, {
+        await axios.patch('http://167.172.244.188/notes/'+title, {
             note_title: document.getElementById('note_title').value,
             note_detail: document.getElementById('note_detail').value
         });
         window.location.href = "/notes/"
       }
       else{
-         await axios.put('http://www.localhost:8080/notes/'+title, {
+         await axios.put('http://167.172.244.188/notes/'+title, {
               note_title: document.getElementById('note_title').value,
               note_detail: document.getElementById('note_detail').value
           });
@@ -32,13 +32,12 @@
     }
     async function onDelete(title) {
         if (confirm("Are you sure you want to delete " + title +"?")) {
-          await axios.delete('http://www.localhost:8080/notes/'+title);
+          await axios.delete('http://167.172.244.188/notes/'+title);
           window.location.href = "/notes/"
         }
       }
 
     function onSubmit(title){
-        console.log(title);
            var ele = document.getElementsByName('method_type');
            var type = "";
            for(i = 0; i < ele.length; i++) {
