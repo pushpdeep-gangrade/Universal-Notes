@@ -22,13 +22,16 @@
         });
         window.location.href = "/notes/"
       }
-      else{
+      else if(method == "PUT"){
          await axios.put('http://167.172.244.188/notes/'+title, {
               note_title: document.getElementById('note_title').value,
               note_detail: document.getElementById('note_detail').value
           });
         window.location.href = "/notes/"
       }
+	else{
+	alert("No Method Selected");
+	}
     }
     async function onDelete(title) {
         if (confirm("Are you sure you want to delete " + title +"?")) {
@@ -106,7 +109,7 @@
                 <form action="/notes" method="post" class="tm-contact-form">
                     <div class="row">
                         <div class="form-group col-xl-6">
-                            <input type="text" id="note_title" name="note_title" class="form-control" placeholder="Title" required <%if(editresult.length>0) { %> value= <%= editresult[0].Title %><% } %>>
+                        <textarea id="note_title" name="note_title"  class="form-control" rows="1" placeholder="Title" required ><%if(editresult.length>0) { %> <%= editresult[0].Title %><% } %></textarea>
                         </div>
                     </div>
                     <div class="form-group">
